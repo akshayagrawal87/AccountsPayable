@@ -17,7 +17,7 @@ public class DatabaseConnection {
 	protected static Properties connectionProps;
 	protected static Statement statement;
 
-	public DatabaseConnection(String userName, String password, String url) {
+	public DatabaseConnection() {
 
 		super();
 		Locale locale = Locale.getDefault();
@@ -38,6 +38,17 @@ public class DatabaseConnection {
 		conn = DriverManager.getConnection(url, connectionProps);
 		System.out.println("Database connection successful");
 		statement = conn.createStatement();
+
+	}
+	public void closeConnection() {
+		if (conn != null) {
+			try {
+
+				conn.close();
+
+			} catch (SQLException e) {
+			}
+		}
 
 	}
 

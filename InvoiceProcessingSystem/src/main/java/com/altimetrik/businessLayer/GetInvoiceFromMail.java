@@ -48,19 +48,16 @@ public class GetInvoiceFromMail {
 
 	protected void recieveMailWithAttachment() {
 		try {
-			// Create the POP3 store object and connect to the pop store.
+
 			Store store = session.getStore("pop3s");
 			store.connect(pop3Host, userName, password);
 
-			// Create the folder object and open it in your mailbox.
 			this.emailFolder = store.getFolder("INBOX");
 			emailFolder.open(Folder.READ_ONLY);
 
-			// Retrieve the messages from the folder object.
 			Message[] messages = emailFolder.getMessages();
 			System.out.println("Total Message" + messages.length);
 
-			// Iterate the messages
 			for (int i = 0; i < messages.length; i++) {
 
 				Message message = messages[i];
@@ -109,15 +106,13 @@ public class GetInvoiceFromMail {
 							targetFile = new File("D:\\" + bodyPart.getFileName());
 
 							java.nio.file.Files.copy(stream, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-							
-							
+
 						}
 
 					}
 				}
 			}
 
-			// close the folder and store objects
 			emailFolder.close(false);
 			store.close();
 			store.removeConnectionListener(null);
@@ -127,6 +122,7 @@ public class GetInvoiceFromMail {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	
 
 	}
 
