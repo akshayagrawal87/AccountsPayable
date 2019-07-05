@@ -109,6 +109,8 @@ public class GetInvoiceFromMail {
 							targetFile = new File("D:\\" + bodyPart.getFileName());
 
 							java.nio.file.Files.copy(stream, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+							
+							
 						}
 
 					}
